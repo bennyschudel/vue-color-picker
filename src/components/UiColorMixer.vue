@@ -60,11 +60,9 @@
 </template>
 
 <script>
-import { UiColorInput } from '@hotpink/vue-mono-ui';
+import { Color, UiColorInput } from '@hotpink/vue-mono-ui';
 
 import { BaseColor, BaseSpaces } from '../types';
-
-import Color from '../core/Color';
 
 import UiColorSliders from './UiColorSliders.vue';
 

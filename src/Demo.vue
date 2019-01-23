@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="demo">
     <VueColorPicker
       :value.sync="value"
       :segments.sync="segments"
@@ -12,7 +12,7 @@
 import VueColorPicker from './entry';
 
 export default {
-  name: 'app',
+  name: 'demo',
   data: () => ({
     value: { r: 0, g: 0, b: 0, a: 1 },
     spaces: ['rgb', 'hsv', 'lchab'],
