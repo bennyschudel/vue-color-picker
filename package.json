@@ -14,28 +14,32 @@
   "module": "dist/vue-color-picker.esm.js",
   "unpkg": "dist/vue-color-picker.min.js",
   "scripts": {
+    "prepublish": "npm run build",
     "serve": "vue-cli-service serve",
     "lint": "vue-cli-service lint",
     "test": "vue-cli-service lint",
     "build:demo": "vue-cli-service build --dest demo",
-    "build": "npm run build:unpkg && npm run build:es && npm run build:umd && yalc push",
+    "build": "npm run build:unpkg && npm run build:es && npm run build:umd",
     "build:umd": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format umd --file dist/vue-color-picker.umd.js",
     "build:es": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format es --file dist/vue-color-picker.esm.js",
-    "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife --file dist/vue-color-picker.min.js"
+    "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife --file dist/vue-color-picker.min.js",
+    "semantic-release": "semantic-release"
   },
   "files": [
     "dist/*",
     "src/*",
-    "!src/demo/*"
+    "!build/*",
+    "!src/demo/*",
+    "!vue.config.js"
   ],
   "dependencies": {
+    "@hotpink/vue-mono-ui": "^1.0.2",
     "color-space": "^1.16.0",
     "d3": "~5.x",
     "lodash": "~4.x",
     "vue": "~2.x"
   },
   "devDependencies": {
-    "@hotpink/vue-mono-ui": "file:.yalc/@hotpink/vue-mono-ui",
     "@vue/cli-plugin-babel": "^3.3.0",
     "@vue/cli-plugin-eslint": "^3.3.0",
     "@vue/cli-service": "^3.3.0",
@@ -60,7 +64,8 @@
     "rollup-plugin-vue": "4.3.2",
     "sass-loader": "^7.1.0",
     "tinycolor2": "^1.4.1",
-    "vue-template-compiler": "^2.5.21"
+    "vue-template-compiler": "^2.5.21",
+    "semantic-release": "^15.13.3"
   },
   "eslintConfig": {
     "root": true,

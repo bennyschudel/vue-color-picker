@@ -1,4 +1,4 @@
-# <VueColorPicker>
+# &lt;VueColorPicker&gt;
 
 A color picker vue component.
 
