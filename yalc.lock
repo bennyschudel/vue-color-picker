@@ -1,9 +1,0 @@
-{
-  "version": "v1",
-  "packages": {
-    "@hotpink/vue-mono-ui": {
-      "signature": "612215554ba1448e5ac917fc959acc68",
-      "file": true
-    }
-  }
-}
