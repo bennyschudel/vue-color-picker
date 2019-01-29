@@ -2,7 +2,7 @@
   <div class="vue-color-picker">
     <UiColorMixer
       :value="value"
-      :vertical="true"
+      :vertical="vertical"
       :segments="segments"
       :spaces="spaces"
       @update:value="onUpdateValue"
@@ -21,11 +21,15 @@ export default {
     },
     spaces: {
       type: Array,
-      default: () => ['rgb', 'hsl', 'cmyk'],
+      default: () => ['rgb', 'hsl', 'hclab'],
     },
     segments: {
       type: Number,
       default: null,
+    },
+    vertical: {
+      type: Boolean,
+      default: false,
     },
   },
   components: {

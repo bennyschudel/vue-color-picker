@@ -5,7 +5,7 @@
     <div class="ui-color-slider__label">{{label}}</div>
     <input
       class="ui-color-slider__value"
-      type="number"
+      ref="input"
       :value="niceValue"
       @change="setValue($event.target.value)"
     >
@@ -146,7 +146,15 @@ export default {
   },
   methods: {
     setValue(v) {
-      this.value = v;
+      let value = parseFloat(v);
+
+      if (isNaN(value)) {
+        this.$refs.input.value = this.value;
+
+        return;
+      }
+
+      this.value = value;
 
       this.emitChange();
     },

@@ -17,11 +17,6 @@
             format="rgb"
             @update:value="onColorInputChange"
           ></UiColorInput>
-          <!--ui-discreet-button
-            icon="clipboard"
-            v-clipboard="hexString"
-            @success="emitColorCopy(hexString)"
-          ></ui-discreet-button-->
         </div>
         <div>
           <UiColorInput
@@ -29,11 +24,6 @@
             format="rgb"
             @update:value="onColorInputChange"
           ></UiColorInput>
-          <!--ui-discreet-button
-            icon="clipboard"
-            v-clipboard="rgbString"
-            @success="emitColorCopy(rgbString)"
-          ></ui-discreet-button-->
         </div>
         <div>
           <UiColorInput
@@ -41,11 +31,6 @@
             format="rgb"
             @update:value="onColorInputChange"
           ></UiColorInput>
-          <!--ui-discreet-button
-            icon="clipboard"
-            v-clipboard="hslString"
-            @success="emitColorCopy(hslString)"
-          ></ui-discreet-button-->
         </div>
       </div>
     </div>
@@ -79,7 +64,7 @@ export default {
     },
     vertical: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     segments: {
       type: Number,
@@ -168,7 +153,8 @@ export default {
     align-items: flex-end;
 
     .ui-color-input {
-      flex: 1 0;
+      flex: 1 0 auto;
+      max-width: 200px;
     }
     .ui-discreet-button {
       flex: 0 0 24px;

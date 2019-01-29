@@ -1,7 +1,15 @@
 {
   "name": "@hotpink/vue-color-picker",
-  "version": "0.1.0",
+  "version": "0.0.0-development",
   "license": "MIT",
+  "description": "Color picker component in vue",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bennyschudel/vue-color-picker.git"
+  },
+  "homepage": "https://github.com/bennyschudel/vue-color-picker#readme",
+  "bugs": "https://github.com/bennyschudel/vue-color-picker/issues",
   "main": "dist/vue-color-picker.umd.js",
   "module": "dist/vue-color-picker.esm.js",
   "unpkg": "dist/vue-color-picker.min.js",
@@ -18,23 +26,24 @@
   "files": [
     "dist/*",
     "src/*",
-    "!src/VueColorPicker.vue"
+    "!src/demo/*"
   ],
   "dependencies": {
-    "color-space": "^1.16.0"
+    "color-space": "^1.16.0",
+    "d3": "~5.x",
+    "lodash": "~4.x",
+    "vue": "~2.x"
   },
   "devDependencies": {
     "@hotpink/vue-mono-ui": "file:.yalc/@hotpink/vue-mono-ui",
     "@vue/cli-plugin-babel": "^3.3.0",
     "@vue/cli-plugin-eslint": "^3.3.0",
-    "@vue/cli-plugin-unit-jest": "^3.3.0",
     "@vue/cli-service": "^3.3.0",
     "@vue/eslint-config-prettier": "^4.0.1",
     "@vue/test-utils": "^1.0.0-beta.20",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
     "cross-env": "^5.2.0",
-    "d3": "^5.7.0",
     "eslint": "^5.8.0",
     "eslint-loader": "^2.1.1",
     "eslint-plugin-vue": "^5.1.0",
@@ -51,12 +60,7 @@
     "rollup-plugin-vue": "4.3.2",
     "sass-loader": "^7.1.0",
     "tinycolor2": "^1.4.1",
-    "vue": "^2.5.21",
     "vue-template-compiler": "^2.5.21"
-  },
-  "peerDependencies": {
-    "vue": "~2.x",
-    "d3": "~5.x"
   },
   "eslintConfig": {
     "root": true,

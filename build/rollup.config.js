@@ -15,8 +15,9 @@ const config = {
     name: 'VueColorPicker',
     exports: 'named',
     globals: {
-      lodash: '_',
+      vue: 'Vue',
       d3: 'd3',
+      lodash: '_',
       '@hotpink/vue-mono-ui': 'VueMonoUi',
     },
   },

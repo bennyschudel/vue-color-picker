@@ -1,22 +1,39 @@
 {
   "name": "@hotpink/vue-mono-ui",
-  "version": "1.0.0-fd65bc01",
-  "description": "",
+  "version": "0.0.0-development-61221555",
+  "license": "MIT",
+  "description": "Mono UI component library in vue",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bennyschudel/vue-mono-ui.git"
+  },
+  "homepage": "https://github.com/bennyschudel/vue-mono-ui#readme",
+  "bugs": "https://github.com/bennyschudel/vue-mono-ui/issues",
   "main": "dist/vue-mono-ui.umd.js",
   "module": "dist/vue-mono-ui.esm.js",
   "unpkg": "dist/vue-mono-ui.min.js",
   "files": [
     "dist/*",
     "src/*",
-    "!src/lib-dev.vue"
+    "!src/demo/*"
   ],
   "scripts": {
+    "serve": "vue-cli-service serve",
+    "lint": "vue-cli-service lint",
+    "test": "vue-cli-service lint",
+    "build:demo": "vue-cli-service build --dest demo",
     "build": "npm run build:unpkg && npm run build:es && npm run build:umd && yalc push",
     "build:umd": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format umd --file dist/vue-mono-ui.umd.js",
     "build:es": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format es --file dist/vue-mono-ui.esm.js",
-    "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife --file dist/vue-mono-ui.min.js"
+    "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife --file dist/vue-mono-ui.min.js",
+    "semantic-release": "semantic-release"
   },
-  "dependencies": {},
+  "dependencies": {
+    "d3": "~5.x",
+    "lodash": "~4.x",
+    "vue": "~2.x"
+  },
   "eslintConfig": {
     "root": true,
     "env": {
@@ -46,5 +63,8 @@
     "singleQuote": true,
     "tabWidth": 2,
     "trailingComma": "all"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
