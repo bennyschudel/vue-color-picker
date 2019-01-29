@@ -67,6 +67,11 @@
     "vue-template-compiler": "^2.5.21",
     "semantic-release": "^15.13.3"
   },
+  "babel": {
+    "presets": [
+      "@vue/app"
+    ]
+  },
   "eslintConfig": {
     "root": true,
     "env": {
