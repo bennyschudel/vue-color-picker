@@ -5,7 +5,12 @@ A color picker vue component.
 ## Usage
 
 ```javascript
-import VueColorPicker from '@hotpink/vue-colormind';
+import Vue from 'vue';
+
+import MonoUi from '@hotpink/vue-mono-ui';
+import VueColorPicker from '@hotpink/vue-color-picker';
+
+Vue.use(MonoUi);
 
 new Vue({
   name: 'app',
