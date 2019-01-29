@@ -10,7 +10,7 @@ const argv = minimist(process.argv.slice(2));
 
 const config = {
   input: 'src/entry.js',
-  external: ['lodash', 'd3'],
+  external: ['d3', 'lodash', 'vue', '@hotpink/vue-mono-ui'],
   output: {
     name: 'VueColorPicker',
     exports: 'named',

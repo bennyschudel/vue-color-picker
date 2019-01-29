@@ -22,5 +22,5 @@ yarn-error.log*
 *.sw*
 
 # yalc
-/.yalc
+.yalc
 yalc.lock
