@@ -14,7 +14,7 @@
   "module": "dist/vue-color-picker.esm.js",
   "unpkg": "dist/vue-color-picker.min.js",
   "scripts": {
-    "prepublish": "npm run build",
+    "prepare": "npm run build",
     "serve": "vue-cli-service serve",
     "lint": "vue-cli-service lint",
     "test": "vue-cli-service lint",
