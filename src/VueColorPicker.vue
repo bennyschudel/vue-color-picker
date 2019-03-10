@@ -1,11 +1,11 @@
 <template>
   <div class="vue-color-picker">
     <UiColorMixer
-      :value="value"
+      :color="color"
       :vertical="vertical"
       :segments="segments"
       :spaces="spaces"
-      @update:value="onUpdateValue"
+      @update:color="onColorUpdate"
     />
   </div>
 </template>
@@ -14,9 +14,9 @@
 import { UiColorMixer } from './components/index';
 
 export default {
-  name: 'vue-chroma-picker',
+  name: 'vue-color-picker',
   props: {
-    value: {
+    color: {
       type: Object,
     },
     spaces: {
@@ -36,8 +36,8 @@ export default {
     UiColorMixer,
   },
   methods: {
-    onUpdateValue(v) {
-      this.$emit('update:value', v);
+    onColorUpdate(v) {
+      this.$emit('update:color', v);
     },
   },
 };

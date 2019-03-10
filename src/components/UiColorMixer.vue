@@ -4,59 +4,52 @@
     :data-vertical="vertical"
   >
     <div class="ui-color-mixer__sample">
-      <div
-        class="ui-color-mixer__sample-swatch"
-        :style="{
-          'background-color': rgbString
-        }"
-      ></div>
-      <div class="ui-color-mixer__sample-info">
-        <div>
-          <UiColorInput
-            :value="hexString"
-            format="rgb"
-            @update:value="onColorInputChange"
-          ></UiColorInput>
-        </div>
-        <div>
-          <UiColorInput
-            :value="rgbString"
-            format="rgb"
-            @update:value="onColorInputChange"
-          ></UiColorInput>
-        </div>
-        <div>
-          <UiColorInput
-            :value="hslString"
-            format="rgb"
-            @update:value="onColorInputChange"
-          ></UiColorInput>
-        </div>
-      </div>
+      <UiColorSwatch
+        :color="color"
+        @update:color="onColorUpdate"
+      />
+      <UiColorInput
+        :color="color"
+        :format="hexFormat"
+        no-swatch
+        @update:color="onColorUpdate"
+      ></UiColorInput>
+      <UiColorInput
+        :color="color"
+        format="rgb"
+        no-swatch
+        @update:color="onColorUpdate"
+      ></UiColorInput>
+      <UiColorInput
+        :color="color"
+        format="hsl"
+        no-swatch
+        @update:color="onColorUpdate"
+      ></UiColorInput>
     </div>
     <UiColorSliders
-      :value="value"
+      :color="color"
       :spaces="spaces"
       :segments="segments"
       :vertical="vertical"
-      @update:value="onUpdateValue"
+      @update:color="onColorUpdate"
     ></UiColorSliders>
   </div>
 </template>
 
 <script>
-import { Color, UiColorInput } from '@hotpink/vue-mono-ui';
+import { Color, UiColorSwatch, UiColorInput } from '@hotpink/vue-mono-ui';
 
-import { BaseColor, BaseSpaces } from '../types';
+import { BaseSpaces } from '../types';
 
 import UiColorSliders from './UiColorSliders.vue';
 
 export default {
   name: 'ui-color-mixer',
   props: {
-    value: {
+    color: {
       type: Object,
-      default: BaseColor,
+      default: Color,
     },
     spaces: {
       type: Array,
@@ -73,35 +66,22 @@ export default {
   },
   computed: {
     alpha() {
-      return this.value.a;
+      return this.color.getAlpha();
     },
-    color() {
-      return new Color(this.value);
-    },
-    hexString() {
-      return this.color[
-        this.alpha < 1 ? 'toHex8String' : 'toHexString'
-      ]().toUpperCase();
-    },
-    rgbString() {
-      return this.color.toRgbString();
-    },
-    hslString() {
-      return this.color.toHslString();
+    hexFormat() {
+      return this.alpha < 1 ? 'hex8' : 'hex';
     },
   },
   methods: {
-    emitColorChange(v) {
-      this.$emit('update:value', v);
+    emitColorUpdate(d) {
+      this.$emit('update:color', d);
     },
-    onColorInputChange(v) {
-      this.emitColorChange(v);
-    },
-    onUpdateValue(v) {
-      this.emitColorChange(v);
+    onColorUpdate(d) {
+      this.emitColorUpdate(d);
     },
   },
   components: {
+    UiColorSwatch,
     UiColorInput,
     UiColorSliders,
   },
@@ -125,8 +105,17 @@ export default {
 }
 
 .ui-color-mixer__sample {
-  display: flex;
+  display: grid;
+  grid-gap: 8px;
+  grid-template-columns: 88px auto;
   margin-bottom: 10px;
+
+  .ui-color-swatch {
+    width: 88px;
+    height: 88px;
+    grid-row-start: 1;
+    grid-row-end: 4;
+  }
 }
 .ui-color-mixer__sample-swatch {
   position: relative;
@@ -142,25 +131,8 @@ export default {
   }
 }
 .ui-color-mixer__sample-info {
-  flex-grow: 1;
-  margin-left: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  > div {
-    display: flex;
-    margin-top: 4px;
-    align-items: flex-end;
-
-    .ui-color-input {
-      flex: 1 0 auto;
-      max-width: 200px;
-    }
-    .ui-discreet-button {
-      flex: 0 0 24px;
-      margin-left: 4px;
-    }
-  }
+  display: grid;
+  grid-gap: 8px;
 }
 
 .ui-color-mixer__space {

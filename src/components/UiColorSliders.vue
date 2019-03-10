@@ -1,10 +1,10 @@
 <template>
   <div
+    v-if="ready"
     :class="{
       'ui-color-sliders': true,
       'ui-color-sliders--vertical': vertical,
     }"
-    v-if="ready"
   >
     <!--div class="ui-color-sliders__gradient">
       <ui-color-gradient
@@ -63,7 +63,7 @@
 <script>
 import { Color } from '@hotpink/vue-mono-ui';
 
-import { BaseColor, BaseSpaces } from '../types';
+import { BaseSpaces } from '../types';
 
 import * as colorSpaces from '../core/colorSpaces';
 
@@ -72,9 +72,8 @@ import UiColorSlider from './UiColorSlider.vue';
 export default {
   name: 'ui-color-sliders',
   props: {
-    value: {
-      type: Object,
-      default: BaseColor,
+    color: {
+      type: Color,
     },
     space: {
       type: String,
@@ -105,10 +104,7 @@ export default {
   },
   computed: {
     alpha() {
-      return this.value.a;
-    },
-    color() {
-      return new Color(this.value);
+      return this.color.getAlpha();
     },
     sliders() {
       // TODO: custom segments per channel
@@ -150,17 +146,6 @@ export default {
 
       return data;
     },
-    hexString() {
-      return this.color[
-        this.alpha < 1 ? 'toHex8String' : 'toHexString'
-      ]().toUpperCase();
-    },
-    rgbString() {
-      return this.color.toRgbString();
-    },
-    hslString() {
-      return this.color.toHslString();
-    },
   },
   methods: {
     syncColors(color, master) {
@@ -170,37 +155,36 @@ export default {
         this.$set(this.colors, mode, value);
       });
     },
-    emitColorChange(value) {
-      this.$emit('update:value', value);
+    emitColorChange(d) {
+      this.$emit('update:color', d);
     },
     onColorChange(d) {
       const [r, g, b] = colorSpaces[d.mode].rgb(d.color);
       const a = this.alpha;
 
-      this.emitColorChange({ r, g, b, a });
+      this.emitColorChange(new Color({ r, g, b, a }));
     },
     onAlphaChange(d) {
       const [r, g, b] = this.colors.rgb;
       const a = d.value;
 
-      this.emitColorChange({ r, g, b, a });
+      this.emitColorChange(new Color({ r, g, b, a }));
     },
-    handleValueChange(v) {
-      const { r, g, b } = v;
+    handleColorChange(d) {
+      const { r, g, b } = d.toRgb();
 
       this.syncColors([r, g, b], 'rgb');
     },
     handleSpacesChange() {
-      this.handleValueChange(this.value);
+      this.handleColorChange(this.color);
     },
   },
   components: {
     UiColorSlider,
   },
   watch: {
-    value: {
-      handler: 'handleValueChange',
-      deep: true,
+    color: {
+      handler: 'handleColorChange',
     },
     spaces: {
       handler: 'handleSpacesChange',
@@ -219,47 +203,20 @@ export default {
 @import '../styles/core';
 
 .ui-color-sliders {
-  display: inline-flex;
-  flex-direction: column;
-  margin: -5px;
-
-  > * {
-    margin: 5px;
-  }
+  display: grid;
+  grid-gap: 8px;
 }
 
 .ui-color-sliders__spaces {
-  display: inline-flex;
-  flex-direction: column;
-}
-
-.ui-color-sliders__space {
-  display: flex;
-  flex-direction: column;
-  margin: 5px 0 0 0;
-
-  &:first-child {
-    margin: 0;
-  }
+  display: grid;
 }
 
 .ui-color-sliders {
   &.ui-color-sliders--vertical {
-    flex-direction: row;
+    grid-auto-flow: column;
 
     .ui-color-sliders__spaces {
-      display: inline-flex;
-      flex-direction: row;
-    }
-
-    .ui-color-sliders__space {
-      display: inline-flex;
-      flex-direction: row;
-      margin: 0 0 0 5px;
-
-      &:first-child {
-        margin: 0;
-      }
+      grid-auto-flow: column;
     }
   }
 }
