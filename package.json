@@ -33,17 +33,18 @@
     "!vue.config.js"
   ],
   "dependencies": {
-    "@hotpink/vue-mono-ui": "^1.2.0",
+    "@hotpink/vue-mono-ui": "^1.4.1",
     "color-space": "^1.16.0",
     "d3": "~5.x",
     "lodash": "~4.x",
     "vue": "~2.x",
-    "vue-drag-drop": "^1.1.4"
+    "vue-drag-drop": "^1.1.4",
+    "vuedraggable": "^2.24.3"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.3.0",
     "@vue/cli-plugin-eslint": "^3.3.0",
-    "@vue/cli-service": "^3.3.0",
+    "@vue/cli-service": "^4.5.11",
     "@vue/eslint-config-prettier": "^4.0.1",
     "@vue/test-utils": "^1.0.0-beta.20",
     "babel-core": "7.0.0-bridge.0",
@@ -53,7 +54,7 @@
     "eslint-loader": "^2.1.1",
     "eslint-plugin-vue": "^5.1.0",
     "minimist": "^1.2.0",
-    "node-sass": "^4.11.0",
+    "node-sass": "^4.14.1",
     "rollup": "^0.67.4",
     "rollup-plugin-buble": "^0.19.6",
     "rollup-plugin-delete": "^0.1.2",
@@ -63,9 +64,8 @@
     "rollup-plugin-scss": "^0.4.0",
     "rollup-plugin-uglify-es": "0.0.1",
     "rollup-plugin-vue": "4.3.2",
-    "sass-loader": "^7.1.0",
-    "semantic-release": "^15.13.3",
-    "tinycolor2": "^1.4.1",
+    "sass-loader": "^10.1.1",
+    "semantic-release": "^17.3.7",
     "vue-template-compiler": "^2.5.21"
   },
   "babel": {
